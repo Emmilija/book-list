@@ -1,0 +1,23 @@
+
+button {
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    background-color:azure;
+}
+
+  #addBookForm {
+    display: none;
+  }
+
+table, #bookTable {
+  width: 100%;
+}
+
+
+.my-icon {
+  width: 10%;
+  color: green;
+}
+td {
+  width: 35%;
+}
