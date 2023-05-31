@@ -3,10 +3,8 @@ document.querySelector('.newBook').addEventListener('click', addBrandNewBook)
 
 document.querySelector('#addBookForm').addEventListener('submit', submitBook);
 
-
-
 function addBrandNewBook() {
-    document.querySelector('#addBookForm').style.display = 'block'
+document.querySelector('#addBookForm').style.display = 'block'
 }
 
 
@@ -27,7 +25,7 @@ const book3 = new Book("The Great Gatsby", '330','Comedy', 'true' )
 const book4 = new Book("Sapiens: A Brief History of Humankind", '128','Trailer', 'true' )
 
 
-let container = document.querySelector('#tableBody')
+
 
 
 library.push(book1);
@@ -37,68 +35,83 @@ library.push(book4);
 
 
 
+    
+
+
+let tableB = document.querySelector("#tableBody");
+
 
 function showMyBooks() {
-
-    let tableB = document.querySelector("#bookTable");
+ 
 //clear the previous content
-    tableB.innerHTML = ''
-    container.innerHTML = "";
+    tableB.innerHTML = "";
 
 
-
-  //go try arr create element display my books
+  //go trough arr create element display my books
   for (let i = 0; i < library.length; i++) {
     let bookL = library[i];
 
+
+
     let tableRow = document.createElement("tr");
+
     let titleB = document.createElement("td");
-    let pagesB = document.createElement("td");
-    let categoryB = document.createElement("td");
-    let readB = document.createElement('td')
-    let removeButton = document.createElement("button");
-
-
     titleB.textContent = bookL.title;
-    pagesB.textContent = bookL.pages;
-    categoryB.textContent = bookL.category;
-    removeButton.textContent = "Remove";
-
     tableRow.appendChild(titleB);
+
+    let pagesB = document.createElement("td");
+    pagesB.textContent = bookL.pages;
     tableRow.appendChild(pagesB);
+
+    let categoryB = document.createElement("td");
+    categoryB.textContent = bookL.category;
     tableRow.appendChild(categoryB);
-    tableB.appendChild(tableRow);
-    tableRow.appendChild(readB)
-    tableRow.appendChild(removeButton);
 
 
-    //remove books 
-    removeButton.addEventListener("click", function () {
-      tableRow.remove();
-      removeButton.style.display = "none";
-    });
-
-    const checkBox = document.querySelector('#readStatus');
-
-
-
-    let icon = document.createElement('i')
-    
-    if(checkBox.checked) {
-        icon.className = "fas fa-check-circle my-icon"
-    }else {
-        icon.innerText = "x";
+    let readB = document.createElement('td')
+    let checkBox = document.createElement('input');
+    checkBox.type = 'checkbox';
+    if (bookL.read) {
+      checkBox.checked = true
+    } else {
+     checkBox.checked = false
     }
 
-readB.innerHTML = ''
-    readB.appendChild(icon)
-    
+
+  readB.appendChild(checkBox)
+ tableRow.appendChild(readB)
+
+    let removeB = document.createElement('td')
+    let removeButton = document.createElement("button");
+    removeButton.textContent = "Remove";
+    tableRow.appendChild(removeB);
+    removeB.appendChild(removeButton);
+
+
+
    
-  }
-}
 
 
+    
 
+
+   //remove books 
+
+   removeButton.addEventListener("click", function () {
+    tableRow.remove();
+    removeButton.style.display = "none";
+  });
+
+
+tableB.appendChild(tableRow);
+
+      }
+
+
+};
+
+
+//remove button function with splice
 
 function submitBook(event) {
   event.preventDefault();
@@ -107,22 +120,23 @@ function submitBook(event) {
   let newTitle = document.querySelector("#title").value;
   let newPages = document.querySelector("#pages").value;
   let newCategory = document.querySelector("#category").value;
-  let newRead = document.querySelector('#readStatus').value
+  let newRead = document.querySelector('#readStatus').checked
 
 
+  // let existingBook = library.find(
+  //   (book) =>
+  //     book.title === newTitle &&
+  //     book.pages === newPages &&
+  //     book.category === newCategory &&
+  //     book.read === newRead
+  // );
 
-  let existingBook = library.find(
-    (book) =>
-      book.title === newTitle &&
-      book.pages === newPages &&
-      book.category === newCategory &&
-      book.read === newRead
-  );
+  // if (existingBook) {
+  //   alert("Book already exists in the library.");
+  //   return; // Do not proceed further
+  // }
 
-  if (existingBook) {
-    alert("Book already exists in the library.");
-    return; // Do not proceed further
-  }
+
 
   let newBook = new Book(newTitle, newPages, newCategory, newRead);
 
@@ -132,7 +146,7 @@ function submitBook(event) {
   document.querySelector("#title").value = "";
   document.querySelector("#pages").value = "";
   document.querySelector("#category").value = "";
-  document.querySelector('#readStatus').value = '';
+  document.querySelector('#readStatus').checked = false;
 
 
   //refresh the display
