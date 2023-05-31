@@ -112,18 +112,18 @@ function submitBook(event) {
   let newRead = document.querySelector('#readStatus').checked
 
 
-  // let existingBook = library.find(
-  //   (book) =>
-  //     book.title === newTitle &&
-  //     book.pages === newPages &&
-  //     book.category === newCategory &&
-  //     book.read === newRead
-  // );
+  let existingBook = library.find(
+    (book) =>
+      book.title === newTitle &&
+      book.pages === newPages &&
+      book.category === newCategory &&
+      book.read === newRead
+  );
 
-  // if (existingBook) {
-  //   alert("Book already exists in the library.");
-  //   return; // Do not proceed further
-  // }
+  if (existingBook) {
+    alert("Book already exists in the library.");
+    return; // Do not proceed further
+  }
 
 
 
