@@ -26,8 +26,6 @@ const book4 = new Book("Sapiens: A Brief History of Humankind", '128','Trailer',
 
 
 
-
-
 library.push(book1);
 library.push(book2);
 library.push(book3);
@@ -35,14 +33,11 @@ library.push(book4);
 
 
 
-    
-
-
 let tableB = document.querySelector("#tableBody");
 
 
+
 function showMyBooks() {
- 
 //clear the previous content
     tableB.innerHTML = "";
 
@@ -87,19 +82,13 @@ function showMyBooks() {
     tableRow.appendChild(removeB);
     removeB.appendChild(removeButton);
 
-
-
-   
-
-
     
-
 
    //remove books 
 
    removeButton.addEventListener("click", function () {
-    tableRow.remove();
-    removeButton.style.display = "none";
+    library.splice(i, 1)
+    tableRow.remove()
   });
 
 
