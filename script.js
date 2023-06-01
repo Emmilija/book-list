@@ -66,6 +66,7 @@ function showMyBooks() {
     let readB = document.createElement('td')
     let checkBox = document.createElement('input');
     checkBox.type = 'checkbox';
+    checkBox.style.transform = 'scale(1.3)';
     if (bookL.read) {
       checkBox.checked = true
     } else {
@@ -79,13 +80,13 @@ function showMyBooks() {
     let removeB = document.createElement('td')
     let removeButton = document.createElement("button");
     removeButton.textContent = "Remove";
+    removeButton.className = 'removeBtn'
     tableRow.appendChild(removeB);
     removeB.appendChild(removeButton);
 
     
 
    //remove books 
-
    removeButton.addEventListener("click", function () {
     library.splice(i, 1)
     tableRow.remove()
